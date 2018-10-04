@@ -6,8 +6,6 @@
 int partition (int arr[], int low, int high)
 {
 		int temp=0;
-	
-
     int pivot = arr[high];    // pivot element
     int i = (low - 1);  // Index of smaller element
  
@@ -16,7 +14,7 @@ int partition (int arr[], int low, int high)
         
         if (arr[j] <= pivot)    //agar pivot se kam hoga to
         {
-            i++;    // increment index of smaller element
+            i++;    //chote ka index badhao
             
 			temp=arr[i];
 			arr[i]=arr[j];
@@ -25,25 +23,43 @@ int partition (int arr[], int low, int high)
     }
  			temp=arr[i+1];
 			arr[i+1]=arr[high];
-			arr[high]=temp;
-   
+			arr[high]=temp;  
     return (i + 1);
-
-	
-	
 	
 }
+
+int partition (int arr[], int low, int high)
+{
+		int temp=0;
+    int pivot = arr[low];    // pivot element
+    int i = (low + 1);  // Index of smaller element
+ 
+    for (int j = low; j <= high- 1; j++)
+    {
+        
+        if (arr[j] <= pivot)    //agar pivot se kam hoga to
+        {
+            i++;    //chote ka index badhao
+            
+			temp=arr[i];
+			arr[i]=arr[j];
+			arr[j]=temp;
+        }
+    }
+ 			temp=arr[i+1];
+			arr[i+1]=arr[high];
+			arr[high]=temp;  
+    return (i + 1);
+	
+}
+
 
 void quickSort(int arr[], int low, int high)
 {
     if (low < high)
     {
-        /* pi is partitioning index, arr[p] is now
-           at right place */
         int par_index = partition(arr, low, high);
  
-        // Separately sort elements before
-        // partition and after partition
         quickSort(arr, low, par_index - 1);
         quickSort(arr, par_index + 1, high);
     }
